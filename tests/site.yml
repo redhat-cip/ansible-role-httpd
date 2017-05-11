@@ -1,0 +1,6 @@
+---
+- name: Install-and-configure-httpd
+  hosts: test
+  become: True
+  roles:
+    - ../../ansible-role-httpd
