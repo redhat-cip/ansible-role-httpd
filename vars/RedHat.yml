@@ -16,3 +16,4 @@
 ---
 httpd_package_name: httpd
 httpd_service_name: httpd
+httpd_configuration_path: /etc/httpd/conf.d

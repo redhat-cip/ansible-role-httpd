@@ -22,6 +22,14 @@
   package:
     name: '{{ httpd_package_name }}'
 
+- name: Enable httpd mod_status
+  become: True
+  template:
+    src: mod_status.conf
+    dest: '{{ httpd_configuration_path }}/mod_status.conf'
+  when: httpd_mod_status_enabled
+  notify: reload-httpd
+
 - name: Start the apache httpd service
   become: True
   service:
