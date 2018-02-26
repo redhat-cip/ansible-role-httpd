@@ -1,7 +1,0 @@
----
-# mod_status
-#
-httpd_mod_status_enabled: False
-
-# httpd_mod_status_deny_rule: Deny from all
-# httpd_mod_status_allow_rule: Allow from localhost

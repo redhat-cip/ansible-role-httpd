@@ -27,8 +27,24 @@
   template:
     src: mod_status.conf
     dest: '{{ httpd_configuration_path }}/mod_status.conf'
-  when: httpd_mod_status_enabled
+  when: httpd_mod_status_enabled is defined and httpd_mod_status_enabled
   notify: reload-httpd
+
+- name: Enable httpd mod_userdir
+  become: True
+  template:
+    src: userdir.conf
+    dest: '{{ httpd_configuration_path }}/userdir.conf'
+  when: httpd_mod_userdir_enabled is defined and httpd_mod_userdir_enabled
+  notify: reload-httpd
+
+- name: Enable httpd_enable_homedirs SELinux boolean
+  become: True
+  seboolean:
+    name: httpd_enable_homedirs
+    state: yes
+    persistent: yes
+  when: httpd_mod_userdir_enabled is defined and httpd_mod_userdir_enabled
 
 - name: Start the apache httpd service
   become: True
